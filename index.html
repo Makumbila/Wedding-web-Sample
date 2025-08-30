@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Xipaci & Mkateko — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<style>
+:root {
+  --bg: #ffffff;
+  --ink: #0a0a0a;
+  --muted: #6b7280;
+  --primary: #0d1a5f; /* navy blue */
+  --accent: #ff7f00; /* orange */
+  --white: #ffffff;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: Inter, sans-serif; background: var(--bg); color: var(--ink); line-height:1.6; overflow-x:hidden;}
+h1,h2,h3{font-family:'Playfair Display', serif;margin-bottom:.5rem;}
+h1{font-size:clamp(2rem,4vw,3rem);}
+h2{font-size:clamp(1.6rem,2.5vw,2rem);}
+h3{font-size:clamp(1.2rem,2vw,1.4rem);}
+.container{width:min(1100px,90%);margin:0 auto;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1rem;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;font-weight:600;transition:all .2s;}
+.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+.btn.success{background:#10b981;color:#fff;border-color:#10b981;}
+.btn.disabled{opacity:.5;cursor:not-allowed;}
+.btn:hover:not(.disabled){transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.1);}
+.site-header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee;z-index:50;}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;}
+.brand-mark{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;font-size:.9rem;}
+.nav{display:none;gap:1rem;}
+.nav a{color:var(--ink);text-decoration:none;font-weight:600;transition:color .2s;}
+.nav a:hover{color:var(--accent);}
+@media(min-width:900px){.nav{display:flex;}}
+.mobile-menu{display:block;background:none;border:none;color:var(--ink);font-size:1.2rem;cursor:pointer;}
+@media(min-width:900px){.mobile-menu{display:none;}}
+.mobile-nav{position:fixed;top:60px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(8px);border-bottom:1px solid #eee;padding:1rem 0;transform:translateY(-100%);opacity:0;transition:all .3s ease;z-index:40;}
+.mobile-nav.active{transform:translateY(0);opacity:1;}
+.mobile-nav a{display:block;padding:.5rem 1rem;color:var(--ink);text-decoration:none;font-weight:600;}
+.hero{position:relative;min-height:80vh;display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,#fff,#f3f6ff);overflow:hidden;}
+.hero-content{position:relative;z-index:1;}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+.hero-title .names{font-weight:700;}
+.hero-title .amp{font-weight:400;opacity:.6;}
+.hero-subtitle{color:var(--muted);max-width:60ch;margin:.5rem auto 1.5rem;}
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(60px,1fr));gap:.8rem;margin:1rem auto 1.5rem;width:min(400px,100%);}
+.countdown div{border:1px solid #eee;padding:.8rem;border-radius:.8rem;background:var(--primary);color:var(--white);transform:scale(.95);transition:transform .2s;}
+.countdown div:hover{transform:scale(1);}
+.countdown span{display:block;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;}
+.countdown small{color:var(--accent);}
+.section{padding:3rem 0;}
+.section.alt{background:#f9f9f9;}
+.timeline{position:relative;margin:2rem 0;padding-left:1rem;}
+.timeline::before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(#e5e7eb,#cbd5e1);}
+.tl-item{position:relative;margin:1.2rem 0;display:grid;grid-template-columns:40px 1fr;align-items:flex-start;}
+.tl-item .dot{width:14px;height:14px;border-radius:50%;background:var(--primary);position:relative;top:.4rem;transition:all .3s;}
+.tl-item.visible .dot{background:var(--accent);transform:scale(1.2);}
+.tl-item .card{border:1px solid #eee;background:#fff;border-radius:.8rem;padding:.8rem;transform:translateY(10px);opacity:0;transition:all .5s ease;}
+.tl-item.visible .card{transform:none;opacity:1;}
+.attire-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.attire-card{border:1px solid #eee;border-radius:.8rem;padding:1rem;background:#fff;transition:transform .2s,box-shadow .2s;}
+.attire-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1);}
+.color-circles{display:flex;gap:.5rem;margin-top:.5rem;}
+.color-circle{width:24px;height:24px;border-radius:50%;border:1px solid #eee;}
+.color-circle.white{background:#fff;}
+.color-circle.orange{background:var(--accent);}
+.color-circle.navy{background:var(--primary);}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1rem;}
+.gallery img{width:100%;height:180px;object-fit:cover;border-radius:.5rem;cursor:pointer;transition:transform .2s;}
+.gallery img:hover{transform:scale(1.02);}
+.placeholder-img{background:linear-gradient(45deg,#f0f0f0,#e0e0e0);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;height:180px;border-radius:.5rem;}
+@media(max-width:900px){.attire-grid{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr;}}
+.form{display:grid;gap:.8rem;max-width:500px;margin-top:.8rem;}
+.form-row{display:grid;gap:.3rem;}
+input,textarea,select{padding:.6rem .8rem;border-radius:.5rem;border:1px solid #e5e7eb;outline:none;background:#fff;transition:all .2s;}
+input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 6px rgba(13,26,95,.1);}
+.agenda{list-style:none;padding:0;display:grid;gap:.4rem;}
+.agenda li{padding:.5rem .8rem;border:1px solid #eee;border-radius:.5rem;background:#fff;font-size:.9rem;transition:all .2s;}
+.agenda li:hover{background:#f8f9fa;border-color:var(--accent);}
+.venue-card{border:1px solid #eee;border-radius:.8rem;padding:1rem;background:#fff;margin-top:1rem;}
+.directions-btn{margin-top:.5rem;}
+.site-footer{border-top:1px solid #eee;padding:1rem 0;text-align:center;color:var(--muted);font-size:.85rem;}
+.falling-heart{position:fixed;top:-50px;font-size:1.2rem;pointer-events:none;z-index:0;animation:fall linear infinite;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(360deg);opacity:.1;}}
+.color-changing{animation:colorCycle 3s infinite;}
+@keyframes colorCycle{0%{color:var(--primary);}33%{color:var(--accent);}66%{color:var(--white);text-shadow:1px 1px 2px rgba(0,0,0,.3);}100%{color:var(--primary);}}
+.live-time{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--muted);margin-top:.5rem;}
+.gift-section{background:linear-gradient(135deg,#f3f6ff,#fff);}
+.notification{position:fixed;top:80px;right:20px;background:var(--primary);color:#fff;padding:.8rem 1rem;border-radius:.5rem;transform:translateX(100%);opacity:0;transition:all .3s ease;z-index:100;}
+.notification.show{transform:translateX(0);opacity:1;}
+.notification.success{background:#10b981;}
+.music-controls{display:flex;align-items:center;gap:.5rem;}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);transform-origin:left;transform:scaleX(0);transition:transform .1s ease;z-index:100;}
+.share-buttons{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;}
+.fade-in{opacity:0;transform:translateY(20px);transition:all .6s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem;}
+.modal.active{display:flex;}
+.modal-content{background:#fff;border-radius:.8rem;padding:2rem;max-width:500px;width:100%;position:relative;}
+.modal-close{position:absolute;top:.5rem;right:.5rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);}
+.gift-registry{margin-top:1rem;}
+.gift-item{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid #eee;}
+.gift-item:last-child{border-bottom:none;}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <span class="brand-mark">✳</span>
+      <span class="brand-text">Xipaci & Mkateko</span>
+    </div>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#attire">Attire</a>
+      <a href="#gallery">Photos</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#gifts">Gifts</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#venue">Venue</a>
+    </nav>
+    <div class="music-controls">
+      <button id="musicToggle" class="btn">🎵 Play Music</button>
+    </div>
+    <button class="mobile-menu" id="mobileMenuBtn">☰</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#attire">Attire</a>
+    <a href="#gallery">Photos</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#gifts">Gifts</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#venue">Venue</a>
+  </nav>
+</header>
+
+<main id="home" class="hero">
+  <div class="hero-content fade-in">
+    <p class="eyebrow">You are invited</p>
+    <h1 class="hero-title color-changing">The Wedding of<br><span class="names">Xipaci Xahumba</span> <span class="amp">&amp;</span> <span class="names">Mkateko Mndlovu</span></h1>
+    <p class="hero-subtitle">Join us as we celebrate love, family, and a beautiful new beginning on December 27th, 2024.</p>
+    <div class="live-time" id="liveTime"></div>
+    <div class="countdown" aria-live="polite">
+      <div><span id="cd-days">—</span><small>Days</small></div>
+      <div><span id="cd-hours">—</span><small>Hours</small></div>
+      <div><span id="cd-mins">—</span><small>Minutes</small></div>
+      <div><span id="cd-secs">—</span><small>Seconds</small></div>
+    </div>
+    <div class="share-buttons">
+      <button class="btn" onclick="shareInvitation()">📤 Share Invitation</button>
+      <button class="btn" onclick="addToCalendar()">📅 Add to Calendar</button>
+      <button class="btn" onclick="openGiftRegistry()">🎁 Gift Registry</button>
+    </div>
+  </div>
+</main>
+
+<section id="timeline" class="section">
+  <div class="container">
+    <h2 class="fade-in">Timeline</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="dot"></div>
+        <div class="card">
+          <h3>2014 – Akuri lembe ra 2014 loko nita vona ntombhi yaka Mndlovu</h3>
+          <p>Hi nguva ya xixika</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="dot"></div>
+        <div class="card">
+          <h3>2014 – Loko ku ya fika nguva ya Ximumu</h3>
+          <p>N'wa Mndlovu, se ahi tsala buku ya marhandzu swin'we</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="dot"></div>
+        <div class="card">
+          <h3>2022 – Laha ani xava xingwavila xa xitshembhiso</h3>
+          <p>N'wa Mndlovu u xi amukerile hi mbilu yo basa paaaaaa</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="dot"></div>
+        <div class="card">
+          <h3>2023 - Hi nhweti ya October a ndzi yisa tihomu no cata</h3>
+          <p>Lembe ra 2025 ni yisa tinyimpfu leswaku vatswari va nsati va tatiphina hi tona</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="attire" class="section alt">
+  <div class="container">
+    <h2 class="fade-in">Attire</h2>
+    <p class="fade-in">Tsonga Traditional Attire: <strong>White, Orange & Navy Blue</strong></p>
+    <div class="attire-grid">
+      <div class="attire-card fade-in">
+        <h3>For Ladies</h3>
+        <p>Traditional Xibelani skirts, matching tops, and headwraps in wedding colors</p>
+        <div class="color-circles">
+          <span class="color-circle white"></span>
+          <span class="color-circle orange"></span>
+          <span class="color-circle navy"></span>
+        </div>
+      </div>
+      <div class="attire-card fade-in">
+        <h3>For Gentlemen</h3>
+        <p>Traditional Tsonga shirts and trousers in coordinating colors</p>
+        <div class="color-circles">
+          <span class="color-circle white"></span>
+          <span class="color-circle orange"></span>
+          <span class="color-circle navy"></span>
+        </div>
+      </div>
+    </div>
+    <div class="attire-card fade-in" style="margin-top:1rem;">
+      <h3>Design by MusaM Mathonsi</h3>
+      <p>Contact: <a href="tel:+27738176295">0738176295</a> | Email: <a href="mailto:Marvinmathonsi@gmail.com">Marvinmathonsi@gmail.com</a></p>
+      <button class="btn" style="margin-top:.5rem;" onclick="contactDesigner()">💬 Contact Designer</button>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <div class="container">
+    <h2 class="fade-in">Photo Gallery</h2>
+    <div class="gallery">
+      <a href="1.jpg" class="glightbox" data-gallery="wedding">
+        <img src="1.jpg" alt="Engagement Photo 1">
+      </a>
+      <a href="2.jpg" class="glightbox" data-gallery="wedding">
+        <img src="2.jpg" alt="Engagement Photo 2">
+      </a>
+      <a href="3.jpg" class="glightbox" data-gallery="wedding">
+        <img src="3.jpg" alt="Engagement Photo 3">
+      </a>
+      <a href="4.jpg" class="glightbox" data-gallery="wedding">
+        <img src="4.jpg" alt="Traditional Attire">
+      </a>
+      <a href="5.jpg" class="glightbox" data-gallery="wedding">
+        <img src="5.jpg" alt="Venue Photo">
+      </a>
+      <a href="6.jpg" class="glightbox" data-gallery="wedding">
+        <img src="6.jpg" alt="Family Photo">
+      </a>
+    </div>
+    <button class="btn" style="margin-top:1rem;" onclick="uploadPhoto()">📸 Upload Your Photo</button>
+  </div>
+</section>
+
+<section id="rsvp" class="section alt">
+  <div class="container">
+    <h2 class="fade-in">RSVP</h2>
+    <p class="fade-in">Please confirm your attendance by December 20th, 2024</p>
+    <form class="form fade-in" id="rsvpForm">
+      <div class="form-row">
+        <input type="text" name="fullName" placeholder="Full Name" required>
+      </div>
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" name="phone" placeholder="Phone" required>
+      </div>
+      <div class="form-row">
+        <select name="attendance" required>
+          <option value="">Will you attend?</option>
+          <option value="yes">Yes, I'll be there!</option>
+          <option value="no">Sorry, can't make it</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <select name="guests">
+          <option value="1">Just me</option>
+          <option value="2">2 people (+ guest)</option>
+          <option value="3">3 people (+ family)</option>
+          <option value="4">4+ people</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <textarea name="dietary" placeholder="Dietary requirements or special requests" rows="2"></textarea>
+      </div>
+      <div class="form-row">
+        <textarea name="message" placeholder="Message for the couple" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn primary">Submit RSVP</button>
+    </form>
+  </div>
+</section>
+
+<section id="gifts" class="section gift-section">
+  <div class="container">
+    <h2 class="fade-in color-changing">Wedding Gifts & Monetary Contributions</h2>
+    <p class="fade-in">Your presence is the greatest gift, but if you wish to contribute to our new beginning:</p>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:2rem;">
+      
+      <div class="attire-card fade-in">
+        <h3>💰 Monetary Gifts</h3>
+        <p style="margin:.5rem 0;">Bank Transfer Details:</p>
+        <div style="background:#f8f9fa;padding:1rem;border-radius:.5rem;font-family:monospace;">
+          <p><strong>Bank:</strong> First National Bank (FNB)</p>
+          <p><strong>Account Number:</strong> 88484848484</p>
+          <p><strong>Account Holder:</strong> Xipaci & Mkateko Wedding</p>
+          <p><strong>Branch Code:</strong> 250655</p>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;">
+          <button class="btn" onclick="copyBankDetails()">📋 Copy Details</button>
+          <button class="btn primary" onclick="quickTransfer()">💸 Quick Transfer</button>
+        </div>
+      </div>
+      
+      <div class="attire-card fade-in">
+        <h3>🎁 Physical Gifts</h3>
+        <p>We've created a wishlist of items for our new home:</p>
+        <div class="gift-registry" style="margin-top:1rem;">
+          <div class="gift-item">
+            <span>Traditional Tsonga Blankets</span>
+            <span style="color:var(--accent);font-weight:600;">R800</span>
+          </div>
+          <div class="gift-item">
+            <span>Kitchen Appliances</span>
+            <span style="color:var(--accent);font-weight:600;">R1500</span>
+          </div>
+          <div class="gift-item">
+            <span>Home Decor Items</span>
+            <span style="color:var(--accent);font-weight:600;">R500</span>
+          </div>
+          <div class="gift-item">
+            <span>Bedroom Linen Set</span>
+            <span style="color:var(--accent);font-weight:600;">R600</span>
+          </div>
+        </div>
+        <button class="btn" style="margin-top:1rem;" onclick="contactForGifts()">📞 Contact Us</button>
+      </div>
+      
+    </div>
+    
+    <div class="attire-card fade-in" style="margin-top:1rem;text-align:center;">
+      <h3>🙏 Thank You</h3>
+      <p>Your love and support mean the world to us. Whether you choose to give a monetary gift, physical present, or simply your presence at our special day, we are grateful for your kindness and friendship.</p>
+    </div>
+  </div>
+</section>
+
+<section id="agenda" class="section">
+  <div class="container">
+    <h2 class="fade-in color-changing">Wedding Day Agenda</h2>
+    <ul class="agenda fade-in">
+      <li><strong class="color-changing">12:00 PM</strong> - Guest arrival and welcome drinks</li>
+      <li><strong class="color-changing">1:00 PM</strong> - Traditional ceremony begins</li>
+      <li><strong class="color-changing">2:30 PM</strong> - Ring exchange and vows</li>
+      <li><strong class="color-changing">3:00 PM</strong> - Photography session</li>
+      <li><strong class="color-changing">4:00 PM</strong> - Reception and traditional feast</li>
+      <li><strong class="color-changing">5:30 PM</strong> - Cultural performances and dancing</li>
+      <li><strong class="color-changing">7:00 PM</strong> - Evening celebration continues</li>
+    </ul>
+  </div>
+</section>
+
+<section id="venue" class="section alt">
+  <div class="container">
+    <h2 class="fade-in color-changing">Venue & Location</h2>
+    <div class="venue-card fade-in">
+      <h3 class="color-changing">Xikundu ZCC Church</h3>
+      <p><strong>Date:</strong> Friday, December 16th, 2025</p>
+      <p><strong>Time:</strong> 12:00 PM - 8:00 PM</p>
+      <p><strong>Address:</strong> Xikundu ZCC Church, Xikundu, Malumulele</p>
+      <div class="directions-btn">
+        <button class="btn" onclick="getDirections()">🗺️ Get Directions</button>
+        <button class="btn" onclick="showAccommodation()">🏨 Accommodation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>Designed by MusaM Mathonsi | <a href="tel:+27738176295">0738176295</a> | <a href="mailto:Marvinmathonsi@gmail.com">Marvinmathonsi@gmail.com</a></div>
+    <div>&copy; 2024 Xipaci & Mkateko Wedding</div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal" id="giftModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('giftModal')">&times;</button>
+    <h3>Gift Registry</h3>
+    <div class="gift-registry">
+      <div class="gift-item">
+        <span>Traditional Tsonga Blankets</span>
+        <button class="btn">💝 Select</button>
+      </div>
+      <div class="gift-item">
+        <span>Kitchen Appliances</span>
+        <button class="btn">💝 Select</button>
+      </div>
+      <div class="gift-item">
+        <span>Home Decor Items</span>
+        <button class="btn">💝 Select</button>
+      </div>
+      <div class="gift-item">
+        <span>Cash Gift</span>
+        <button class="btn">💝 Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="accommodationModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('accommodationModal')">&times;</button>
+    <h3>Recommended Accommodation</h3>
+    <div style="margin-top:1rem;">
+      <p><strong>Local Guest Houses:</strong></p>
+      <p>• Limpopo Lodge - 15 minutes from venue</p>
+      <p>• Traditional Village Stay - 10 minutes from venue</p>
+      <p>• Family Homestays - Contact us for arrangements</p>
+      <br>
+      <p>For bookings, please contact the families directly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<!-- Audio element for background music -->
+<audio id="backgroundMusic" loop preload="none">
+  <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+LosnMeAjaK0fPTgCwEHILL8+2URwsVYrLn6qxbEwr1x+3YsWUiCz2MzPfQgCkCJXnH8t+RQgkTXb3o86xfEgqsyO7etFgdBD6ey/7YpGAaDDyJyfXWgyQCJIHL8N2SRQsUYbPn6+pdEQr5yePYsWIdBjuR0/fRgyQDJHXA8t2QRwsVYrPn76hYFgp3wuPWr2UdDCmXyvTSiCQCJILL8+uWRAkSYrDm76pZFgnHyu7dpWo=" type="audio/wav">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+// Wedding date: December 27, 2024
+const weddingDate = new Date('2024-12-27T13:00:00').getTime();
+
+// Countdown timer
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  
+  if (distance < 0) {
+    document.querySelector('.countdown').innerHTML = '<div style="grid-column: 1/-1; padding: 1rem;"><span style="font-size: 1.5rem;">🎉</span><small>The Wedding Day is Here!</small></div>';
+    return;
+  }
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById('cd-days').textContent = days;
+  document.getElementById('cd-hours').textContent = hours;
+  document.getElementById('cd-mins').textContent = minutes;
+  document.getElementById('cd-secs').textContent = seconds;
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Update live time
+function updateLiveTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('en-ZA', {
+    timeZone: 'Africa/Johannesburg',
+    hour12: true,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+  const dateString = now.toLocaleDateString('en-ZA', {
+    timeZone: 'Africa/Johannesburg',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  document.getElementById('liveTime').innerHTML = `Current time: ${timeString}<br>${dateString}`;
+}
+
+// Update time every second
+setInterval(updateLiveTime, 1000);
+updateLiveTime();
+
+// Smooth scrolling for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile menu if open
+      document.getElementById('mobileNav').classList.remove('active');
+    }
+  });
+});
+
+// Mobile menu toggle
+document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+  document.getElementById('mobileNav').classList.toggle('active');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  if (!mobileNav.contains(e.target) && !mobileBtn.contains(e.target)) {
+    mobileNav.classList.remove('active');
+  }
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Observe timeline items and fade-in elements
+document.querySelectorAll('.tl-item, .fade-in').forEach(el => {
+  observer.observe(el);
+});
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progressBar').style.transform = `scaleX(${scrolled / 100})`;
+});
+
+// Music functionality
+let isPlaying = false;
+const music = document.getElementById('backgroundMusic');
+const musicBtn = document.getElementById('musicToggle');
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    music.pause();
+    musicBtn.textContent = '🎵 Play Music';
+    isPlaying = false;
+  } else {
+    music.play().catch(() => {
+      showNotification('Click anywhere to enable music', 'error');
+    });
+    musicBtn.textContent = '⏸️ Pause Music';
+    isPlaying = true;
+  }
+});
+
+// RSVP form submission
+document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+  
+  // Simulate form submission
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.classList.add('disabled');
+  
+  setTimeout(() => {
+    showNotification('Thank you! Your RSVP has been received.', 'success');
+    e.target.reset();
+    submitBtn.textContent = 'Submit RSVP';
+    submitBtn.classList.remove('disabled');
+  }, 2000);
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.className = `notification ${type}`;
+  notification.classList.add('show');
+  
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 4000);
+}
+
+// Share invitation
+function shareInvitation() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Xipaci & Mkateko Wedding Invitation',
+      text: 'You are invited to celebrate the wedding of Xipaci Xahumba & Mkateko Mndlovu on December 27th, 2024',
+      url: window.location.href
+    }).catch(() => {
+      copyToClipboard(window.location.href);
+    });
+  } else {
+    copyToClipboard(window.location.href);
+  }
+}
+
+// Copy to clipboard
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showNotification('Invitation link copied to clipboard!', 'success');
+  }).catch(() => {
+    showNotification('Could not copy link. Please share manually.', 'error');
+  });
+}
+
+// Add to calendar
+function addToCalendar() {
+  const event = {
+    title: 'Xipaci & Mkateko Wedding',
+    start: '20241227T100000Z',
+    end: '20241227T180000Z',
+    description: 'Traditional Tsonga wedding ceremony and celebration',
+    location: 'Nsimbhi AFM Church, Limpopo Province'
+  };
+  
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding//Wedding Invitation//EN
+BEGIN:VEVENT
+UID:${Date.now()}@wedding.com
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART:${event.start}
+DTEND:${event.end}
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+LOCATION:${event.location}
+END:VEVENT
+END:VCALENDAR`;
+
+  const blob = new Blob([icsContent], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'wedding-invitation.ics';
+  link.click();
+  URL.revokeObjectURL(url);
+  
+  showNotification('Calendar event downloaded!', 'success');
+}
+
+// Gift registry modal
+function openGiftRegistry() {
+  document.getElementById('giftModal').classList.add('active');
+}
+
+// Contact designer
+function contactDesigner() {
+  const message = `Hi MusaM, I'm interested in traditional Tsonga attire for Xipaci & Mkateko's wedding on Dec 27th. Could you help me with sizing and availability?`;
+  const whatsappUrl = `https://wa.me/27738176295?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+// Copy bank details
+function copyBankDetails() {
+  const details = `FNB Bank Transfer Details:
+Account Number: 88484848484
+Account Holder: Xipaci & Mkateko Wedding
+Branch Code: 250655
+Reference: Your Name + Wedding Gift`;
+  
+  navigator.clipboard.writeText(details).then(() => {
+    showNotification('Bank details copied to clipboard!', 'success');
+  }).catch(() => {
+    showNotification('Could not copy. Please note down the details.', 'error');
+  });
+}
+
+// Quick transfer (opens banking app)
+function quickTransfer() {
+  showNotification('Opening your banking app for quick transfer...', 'info');
+  // This would typically open a banking app or payment gateway
+  setTimeout(() => {
+    showNotification('Use reference: "Your Name + Wedding Gift" for the transfer', 'info');
+  }, 2000);
+}
+
+// Contact for gifts
+function contactForGifts() {
+  const message = `Hi! I'd like to discuss gift options for Xipaci & Mkateko's wedding on Dec 27th.`;
+  const whatsappUrl = `https://wa.me/27738176295?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+// Get directions
+function getDirections() {
+  const venue = 'Nsimbhi AFM Church, Limpopo Province, South Africa';
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue)}`;
+  window.open(mapsUrl, '_blank');
+}
+
+// Show accommodation
+function showAccommodation() {
+  document.getElementById('accommodationModal').classList.add('active');
+}
+
+// Upload photo (placeholder functionality)
+function uploadPhoto() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = () => {
+    if (input.files[0]) {
+      showNotification('Photo upload feature coming soon! Please email photos directly to the couple.', 'info');
+    }
+  };
+  input.click();
+}
+
+// Close modal
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('active');
+}
+
+// Close modals when clicking outside
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+});
+
+// Falling hearts animation with wedding colors
+const heartColors = ['#ff7f00', '#ffffff', '#0d1a5f']; // Orange, White, Navy
+const heartShapes = ['💕', '💖', '💗', '💙', '🤍', '🧡'];
+
+function createFallingHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'falling-heart';
+  
+  // Random heart shape and color
+  const randomShape = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+  const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+  
+  heart.textContent = randomShape;
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.color = randomColor;
+  heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  heart.style.opacity = Math.random() * 0.8 + 0.2;
+  heart.style.fontSize = (Math.random() * 0.8 + 1) + 'rem';
+  
+  // Add white text shadow for white hearts
+  if (randomColor === '#ffffff') {
+    heart.style.textShadow = '1px 1px 2px rgba(0,0,0,0.5)';
+  }
+  
+  document.body.appendChild(heart);
+  
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+
+// Create falling hearts more frequently
+setInterval(createFallingHeart, 1500);
+
+// Initialize lightbox for gallery
+const lightbox = GLightbox({
+  touchNavigation: true,
+  loop: true,
+  autoplayVideos: true
+});
+
+// Weather widget (placeholder)
+function checkWeather() {
+  showNotification('Weather forecast: Sunny with a chance of love! 🌞', 'info');
+}
+
+// Save the date reminder
+function setReminder() {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        const reminderDate = new Date('2024-12-26T12:00:00');
+        const now = new Date();
+        const timeDiff = reminderDate - now;
+        
+        if (timeDiff > 0) {
+          setTimeout(() => {
+            new Notification('Wedding Reminder', {
+              body: 'Don\'t forget! Xipaci & Mkateko\'s wedding is tomorrow!',
+              icon: '💒'
+            });
+          }, timeDiff);
+          showNotification('Reminder set for the day before the wedding!', 'success');
+        }
+      }
+    });
+  }
+}
+
+// Language toggle (placeholder for Tsonga/English)
+let currentLang = 'en';
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'ts' : 'en';
+  if (currentLang === 'ts') {
+    showNotification('Tsonga translation coming soon!', 'info');
+  } else {
+    showNotification('Switched to English', 'success');
+  }
+}
+
+// Guest messages (placeholder for a guest book feature)
+const guestMessages = [];
+function addGuestMessage(name, message) {
+  guestMessages.push({ name, message, timestamp: new Date() });
+  showNotification('Thank you for your message!', 'success');
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+  // Add initial fade-in to hero
+  setTimeout(() => {
+    document.querySelector('.hero-content').classList.add('visible');
+  }, 500);
+  
+  // Add keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.active').forEach(modal => {
+        modal.classList.remove('active');
+      });
+      document.getElementById('mobileNav').classList.remove('active');
+    }
+  });
+  
+  // Add click-to-play music hint
+  document.addEventListener('click', () => {
+    if (!isPlaying && music.paused) {
+      const hint = document.createElement('div');
+      hint.style.cssText = 'position:fixed;bottom:20px;right:20px;background:var(--primary);color:#fff;padding:.5rem;border-radius:.5rem;font-size:.8rem;z-index:100;';
+      hint.textContent = 'Click "Play Music" for wedding ambiance 🎵';
+      document.body.appendChild(hint);
+      setTimeout(() => hint.remove(), 3000);
+    }
+  }, { once: true });
+});
+
+// Additional utility functions
+function formatPhoneNumber(input) {
+  let value = input.value.replace(/\D/g, '');
+  if (value.startsWith('27')) {
+    value = '+' + value;
+  } else if (value.startsWith('0')) {
+    value = '+27' + value.substring(1);
+  }
+  input.value = value;
+}
+
+// Auto-format phone numbers
+document.querySelector('input[type="tel"]').addEventListener('input', function() {
+  formatPhoneNumber(this);
+});
+
+// Form validation
+function validateForm(formData) {
+  const required = ['fullName', 'email', 'phone', 'attendance'];
+  for (let field of required) {
+    if (!formData.get(field) || formData.get(field).trim() === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Enhanced RSVP submission
+document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  
+  if (!validateForm(formData)) {
+    showNotification('Please fill in all required fields', 'error');
+    return;
+  }
+  
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.classList.add('disabled');
+  
+  // Simulate API call
+  setTimeout(() => {
+    const data = Object.fromEntries(formData);
+    console.log('RSVP Data:', data); // In real implementation, send to server
+    
+    showNotification(`Thank you ${data.fullName}! Your RSVP has been received.`, 'success');
+    e.target.reset();
+    submitBtn.textContent = originalText;
+    submitBtn.classList.remove('disabled');
+    
+    // Show follow-up actions
+    setTimeout(() => {
+      showNotification('Check your email for confirmation details', 'info');
+    }, 2000);
+  }, 2000);
+});
+
+// Enhanced gallery with placeholder images
+document.querySelectorAll('.placeholder-img').forEach((img, index) => {
+  img.addEventListener('click', () => {
+    showNotification('Photos will be uploaded closer to the wedding date!', 'info');
+  });
+});
+
+// Back to top functionality
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    if (!document.getElementById('backToTop')) {
+      const btn = document.createElement('button');
+      btn.id = 'backToTop';
+      btn.className = 'btn primary';
+      btn.innerHTML = '↑';
+      btn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:100;border-radius:50%;width:50px;height:50px;';
+      btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.appendChild(btn);
+    }
+  } else {
+    const btn = document.getElementById('backToTop');
+    if (btn) btn.remove();
+  }
+});
+
+// Add loading states for buttons
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    if (!this.classList.contains('disabled')) {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    }
+  });
+});
+
+// Auto-save RSVP as draft
+let draftTimeout;
+document.getElementById('rsvpForm').addEventListener('input', (e) => {
+  clearTimeout(draftTimeout);
+  draftTimeout = setTimeout(() => {
+    const formData = new FormData(e.target.closest('form'));
+    const draft = Object.fromEntries(formData);
+    // In real implementation, save to localStorage or server
+    console.log('Draft saved:', draft);
+  }, 1000);
+});
+
+// Wedding countdown announcements
+function checkCountdownMilestones() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  
+  if (days === 7) {
+    showNotification('One week until the big day! 🎉', 'info');
+  } else if (days === 1) {
+    showNotification('Tomorrow is the wedding! Final preparations! 💒', 'success');
+  } else if (days === 0) {
+    showNotification('Today is the wedding day! Congratulations! 🎊', 'success');
+  }
+}
+
+// Check milestones on load
+checkCountdownMilestones();
+
+// Error handling for audio
+music.addEventListener('error', () => {
+  musicBtn.textContent = '🎵 Music Unavailable';
+  musicBtn.classList.add('disabled');
+});
+
+// Accessibility improvements
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') {
+    document.body.classList.add('keyboard-navigation');
+  }
+});
+
+document.addEventListener('mousedown', () => {
+  document.body.classList.remove('keyboard-navigation');
+});
+
+// Add keyboard navigation styles
+const style = document.createElement('style');
+style.textContent = `
+.keyboard-navigation *:focus {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+`;
+document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>
